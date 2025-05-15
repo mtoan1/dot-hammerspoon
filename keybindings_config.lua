@@ -43,7 +43,7 @@ _M.websites = {
 		prefix = { "Option" },
 		key = "8",
 		message = "github.com",
-		target = "https://github.com/windvalley",
+		target = "https://github.com",
 	},
 	{
 		prefix = { "Option" },
@@ -59,17 +59,16 @@ _M.websites = {
 	},
 }
 
--- 简体拼音
-local pinyin = "com.apple.inputmethod.SCIM.ITABC"
--- ABC
+-- Telex (Vietnamese)
+local telex = "com.apple.inputmethod.Vietnamese"
+-- ABC (English keyboard)
 local abc = "com.apple.keylayout.ABC"
 
--- 手动切换到目标输入法
 _M.manual_input_methods = {
-	-- NOTE: message的值不能是中文, 会导致快捷键列表面板显示错位.
 	{ prefix = { "Option" }, key = "1", input_method = abc, message = "ABC" },
-	{ prefix = { "Option" }, key = "2", input_method = pinyin, message = "Pinyin" },
+	{ prefix = { "Option" }, key = "2", input_method = telex, message = "Telex" },
 }
+
 
 -- 自动切换App所对应的输入法, 格式: 应用的bundleID = 输入法简称
 -- NOTE: 获取某个App的bundleId的方法举例: osascript -e 'id of app "chrome"'
@@ -84,29 +83,30 @@ _M.auto_input_methods = {
 	["org.virtualbox.app.VirtualBox"] = abc,
 	["com.postmanlabs.mac"] = abc,
 	["com.todesktop.230313mzl4w4u92"] = abc,
-	["com.tencent.xinWeChat"] = pinyin,
-	["com.apple.mail"] = pinyin,
-	["com.microsoft.Excel"] = pinyin,
-	["mac.im.qihoo.net"] = pinyin,
-	["ynote-desktop"] = pinyin,
+	["com.tencent.xinWeChat"] = abc,
+	["com.apple.mail"] = abc,
+	["com.microsoft.Excel"] = abc,
+	["mac.im.qihoo.net"] = abc,
+	["ynote-desktop"] = abc,
+	["ru.keepcoder.Telegram"] = telex,
 }
 
--- App启动或隐藏
--- NOTE: 获取某个App的bundleId的方法举例: osascript -e 'id of app "chrome"'
+-- App
+-- NOTE: osascript -e 'id of app "chrome"'
 _M.apps = {
 	{ prefix = { "Option" }, key = "H", message = "Hammerspoon Console", bundleId = "org.hammerspoon.Hammerspoon" },
 	{ prefix = { "Option" }, key = "F", message = "Finder", bundleId = "com.apple.finder" },
-	{ prefix = { "Option" }, key = "I", message = "Alacritty", bundleId = "org.alacritty" },
-	{ prefix = { "Option" }, key = "C", message = "Chrome", bundleId = "com.google.Chrome" },
-	{ prefix = { "Option" }, key = "N", message = "Note", bundleId = "ynote-desktop" },
+	{ prefix = { "Option" }, key = "I", message = "ITerm", bundleId = "com.googlecode.iterm2" },
+	{ prefix = { "Option" }, key = "C", message = "ChatWise", bundleId = "app.chatwise" },
+	{ prefix = { "Option" }, key = "N", message = "Notion", bundleId = "notion.id" },
 	{ prefix = { "Option" }, key = "D", message = "Draw.io", bundleId = "com.jgraph.drawio.desktop" },
 	{ prefix = { "Option" }, key = "K", message = "Freeplane", bundleId = "org.freeplane.launcher" },
-	{ prefix = { "Option" }, key = "O", message = "Obsidian", bundleId = "md.obsidian" },
+	{ prefix = { "Option" }, key = "O", message = "OpenCat", bundleId = "tech.baye.OpenCat" },
 	{ prefix = { "Option" }, key = "M", message = "Mail", bundleId = "com.apple.mail" },
 	{ prefix = { "Option" }, key = "P", message = "Postman", bundleId = "com.postmanlabs.mac" },
 	{ prefix = { "Option" }, key = "E", message = "Excel", bundleId = "com.microsoft.Excel" },
 	{ prefix = { "Option" }, key = "V", message = "Cursor", bundleId = "com.todesktop.230313mzl4w4u92" },
-	{ prefix = { "Option" }, key = "J", message = "Tuitui", bundleId = "mac.im.qihoo.net" },
+	{ prefix = { "Option" }, key = "J", message = "Telegram", bundleId = "ru.keepcoder.Telegram" },
 	{ prefix = { "Option" }, key = "W", message = "WeChat", bundleId = "com.tencent.xinWeChat" },
 }
 
