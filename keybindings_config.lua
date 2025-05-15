@@ -59,38 +59,6 @@ _M.websites = {
 	},
 }
 
--- Telex (Vietnamese)
-local telex = "com.apple.inputmethod.Vietnamese"
--- ABC (English keyboard)
-local abc = "com.apple.keylayout.ABC"
-
-_M.manual_input_methods = {
-	{ prefix = { "Option" }, key = "1", input_method = abc, message = "ABC" },
-	{ prefix = { "Option" }, key = "2", input_method = telex, message = "Telex" },
-}
-
-
--- 自动切换App所对应的输入法, 格式: 应用的bundleID = 输入法简称
--- NOTE: 获取某个App的bundleId的方法举例: osascript -e 'id of app "chrome"'
-_M.auto_input_methods = {
-	["org.hammerspoon.Hammerspoon"] = abc,
-	["com.apple.finder"] = abc,
-	["com.apple.Spotlight"] = abc,
-	["org.alacritty"] = abc,
-	["md.obsidian"] = abc,
-	["com.google.Chrome"] = abc,
-	["com.microsoft.VSCode"] = abc,
-	["org.virtualbox.app.VirtualBox"] = abc,
-	["com.postmanlabs.mac"] = abc,
-	["com.todesktop.230313mzl4w4u92"] = abc,
-	["com.tencent.xinWeChat"] = abc,
-	["com.apple.mail"] = abc,
-	["com.microsoft.Excel"] = abc,
-	["mac.im.qihoo.net"] = abc,
-	["ynote-desktop"] = abc,
-	["ru.keepcoder.Telegram"] = telex,
-}
-
 -- App
 -- NOTE: osascript -e 'id of app "chrome"'
 _M.apps = {

@@ -27,7 +27,7 @@
 
 2. Run `Hammerspoon.app` and follow the prompts to enable Accessibility access for the app.
 
-3. `git clone --depth 1 https://github.com/windvalley/dot-hammerspoon.git ~/.hammerspoon`
+3. `git clone --depth 1 https://github.com/mtoan1/dot-hammerspoon.git ~/.hammerspoon`
 
 Keep update:
 
