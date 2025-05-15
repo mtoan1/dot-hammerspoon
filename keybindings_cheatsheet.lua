@@ -4,7 +4,6 @@ _M.name = "keybindings_cheatsheet"
 _M.description = "展示快捷键备忘列表"
 
 local keybindings_cheatsheet = require "keybindings_config".keybindings_cheatsheet
-local input_methods = require "keybindings_config".manual_input_methods
 local system = require "keybindings_config".system
 local websites = require "keybindings_config".websites
 local apps = require "keybindings_config".apps
@@ -122,14 +121,6 @@ local function formatText()
     -- 快捷键分类
     for _, v in ipairs(hotkeys) do
         local _msg = trim(split(v.msg, ":")[2])
-
-        -- Input methods
-        for _, i in pairs(input_methods) do
-            if _msg == i.message then
-                table.insert(inputMethods, {msg = v.msg})
-                goto continue
-            end
-        end
 
         -- System management
         for _, s in pairs(system) do
