@@ -20,6 +20,21 @@ _M.system = {
 		key = "Q",
 		message = "Lock Screen",
 	},
+	-- screen_saver = {
+	-- 	prefix = { "Option" },
+	-- 	key = "S",
+	-- 	message = "Start Screensaver",
+	-- },
+	-- restart = {
+	-- 	prefix = { "Ctrl", "Option", "Command", "Shift" },
+	-- 	key = "R",
+	-- 	message = "Restart Computer",
+	-- },
+	-- shutdown = {
+	-- 	prefix = { "Ctrl", "Option", "Command", "Shift" },
+	-- 	key = "S",
+	-- 	message = "Shutdown Computer",
+	-- },
 }
 
 -- 调用默认浏览器快速打开URL

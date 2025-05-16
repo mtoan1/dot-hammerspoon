@@ -19,34 +19,34 @@ hs.hotkey.bind(
 )
 
 -- 启动屏保.
-hs.hotkey.bind(
-    system.screen_saver.prefix,
-    system.screen_saver.key,
-    system.screen_saver.message,
-    function()
-        log.d("start screensaver")
-        hs.caffeinate.startScreensaver()
-    end
-)
+-- hs.hotkey.bind(
+--     system.screen_saver.prefix,
+--     system.screen_saver.key,
+--     system.screen_saver.message,
+--     function()
+--         log.d("start screensaver")
+--         hs.caffeinate.startScreensaver()
+--     end
+-- )
 
 -- 重启.
-hs.hotkey.bind(
-    system.restart.prefix,
-    system.restart.key,
-    system.restart.message,
-    function()
-        hs.caffeinate.restartSystem()
-    end
-)
+-- hs.hotkey.bind(
+--     system.restart.prefix,
+--     system.restart.key,
+--     system.restart.message,
+--     function()
+--         hs.caffeinate.restartSystem()
+--     end
+-- )
 
--- 关机.
-hs.hotkey.bind(
-    system.shutdown.prefix,
-    system.shutdown.key,
-    system.shutdown.message,
-    function()
-        hs.caffeinate.shutdownSystem()
-    end
-)
+-- -- 关机.
+-- hs.hotkey.bind(
+--     system.shutdown.prefix,
+--     system.shutdown.key,
+--     system.shutdown.message,
+--     function()
+--         hs.caffeinate.shutdownSystem()
+--     end
+-- )
 
 return _M
