@@ -20,21 +20,6 @@ _M.system = {
 		key = "Q",
 		message = "Lock Screen",
 	},
-	screen_saver = {
-		prefix = { "Option" },
-		key = "S",
-		message = "Start Screensaver",
-	},
-	restart = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "R",
-		message = "Restart Computer",
-	},
-	shutdown = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "S",
-		message = "Shutdown Computer",
-	},
 }
 
 -- 调用默认浏览器快速打开URL
@@ -65,17 +50,22 @@ _M.apps = {
 	{ prefix = { "Option" }, key = "H", message = "Hammerspoon Console", bundleId = "org.hammerspoon.Hammerspoon" },
 	{ prefix = { "Option" }, key = "F", message = "Finder", bundleId = "com.apple.finder" },
 	{ prefix = { "Option" }, key = "I", message = "ITerm", bundleId = "com.googlecode.iterm2" },
-	{ prefix = { "Option" }, key = "C", message = "ChatWise", bundleId = "app.chatwise" },
+	{ prefix = { "Option" }, key = "A", message = "ChatWise", bundleId = "app.chatwise" },
 	{ prefix = { "Option" }, key = "N", message = "Notion", bundleId = "notion.id" },
-	{ prefix = { "Option" }, key = "D", message = "Draw.io", bundleId = "com.jgraph.drawio.desktop" },
+	{ prefix = { "Option" }, key = "D", message = "DataGrip", bundleId = "com.jetbrains.datagrip" },
 	{ prefix = { "Option" }, key = "K", message = "Freeplane", bundleId = "org.freeplane.launcher" },
 	{ prefix = { "Option" }, key = "O", message = "OpenCat", bundleId = "tech.baye.OpenCat" },
-	{ prefix = { "Option" }, key = "M", message = "Mail", bundleId = "com.apple.mail" },
+	{ prefix = { "Option" }, key = "M", message = "Microsoft Teams", bundleId = "com.microsoft.teams2" },
 	{ prefix = { "Option" }, key = "P", message = "Postman", bundleId = "com.postmanlabs.mac" },
 	{ prefix = { "Option" }, key = "E", message = "Excel", bundleId = "com.microsoft.Excel" },
 	{ prefix = { "Option" }, key = "V", message = "Cursor", bundleId = "com.todesktop.230313mzl4w4u92" },
-	{ prefix = { "Option" }, key = "J", message = "Telegram", bundleId = "ru.keepcoder.Telegram" },
+	{ prefix = { "Option" }, key = "T", message = "Telegram", bundleId = "ru.keepcoder.Telegram" },
 	{ prefix = { "Option" }, key = "W", message = "WeChat", bundleId = "com.tencent.xinWeChat" },
+	{ prefix = { "Option" }, key = "S", message = "Safari", bundleId = "com.apple.Safari" },
+	{ prefix = { "Option" }, key = "G", message = "Goland", bundleId = "com.jetbrains.goland" },
+	{ prefix = { "Option" }, key = "C", message = "Google Chrome", bundleId = "com.google.Chrome" },
+	{ prefix = { "Option" }, key = "R", message = "OBS", bundleId = "com.obsproject.obs-studio" },
+	{ prefix = { "Option" }, key = "L", message = "Lens", bundleId = "com.electron.kontena-lens" },
 }
 
 -- 窗口管理: 改变窗口位置
