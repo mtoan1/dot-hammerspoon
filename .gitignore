@@ -1,1 +1,50 @@
-Spoons/
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, build with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# system ignore
+.DS_Store
+Thumbs.db
+
+# go
+vendor/
+/vendor
+
+# temp ignore
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+*debug.test
+__debug_bin
+/*.xlsx
+/*.csv
+
+# Gin bin
+gin-bin
+
+# Office Temp Files
+~$*
+
+# Coverage Test
+coverage
+
+fmtcoverage.html
+cover.html
+
+.env
+.idea/*
+.vscode/*
+tmp/
+/env
+.aider*

@@ -1,9 +1,9 @@
 local _M = {}
 
 _M.name = "keybindings_config"
-_M.description = "快捷键配置"
+_M.description = "Keybinding configuration"
 
--- 快捷键备忘单展示
+-- Keybindings cheatsheet display
 _M.keybindings_cheatsheet = {
 	prefix = {
 		"Option",
@@ -13,37 +13,22 @@ _M.keybindings_cheatsheet = {
 	description = "⌥/: Toggle Keybindings Cheatsheet",
 }
 
--- 系统管理
+-- System management
 _M.system = {
 	lock_screen = {
 		prefix = { "Option" },
 		key = "Q",
 		message = "Lock Screen",
 	},
-	-- screen_saver = {
-	-- 	prefix = { "Option" },
-	-- 	key = "S",
-	-- 	message = "Start Screensaver",
-	-- },
-	-- restart = {
-	-- 	prefix = { "Ctrl", "Option", "Command", "Shift" },
-	-- 	key = "R",
-	-- 	message = "Restart Computer",
-	-- },
-	-- shutdown = {
-	-- 	prefix = { "Ctrl", "Option", "Command", "Shift" },
-	-- 	key = "S",
-	-- 	message = "Shutdown Computer",
-	-- },
 }
 
--- 调用默认浏览器快速打开URL
+-- Quickly open URL using default browser
 _M.websites = {
 	{
 		prefix = { "Option" },
 		key = "8",
 		message = "github.com",
-		target = "https://github.com",
+		target = "https://github.com/windvalley",
 	},
 	{
 		prefix = { "Option" },
@@ -59,21 +44,22 @@ _M.websites = {
 	},
 }
 
--- App
--- NOTE: osascript -e 'id of app "chrome"'
+
+-- App launch or hide
+-- NOTE: Example to get an app's bundleId: osascript -e 'id of app "chrome"'
 _M.apps = {
 	{ prefix = { "Option" }, key = "H", message = "Hammerspoon Console", bundleId = "org.hammerspoon.Hammerspoon" },
 	{ prefix = { "Option" }, key = "F", message = "Finder", bundleId = "com.apple.finder" },
 	{ prefix = { "Option" }, key = "I", message = "ITerm", bundleId = "com.googlecode.iterm2" },
 	{ prefix = { "Option" }, key = "A", message = "ChatWise", bundleId = "app.chatwise" },
 	{ prefix = { "Option" }, key = "N", message = "Notion", bundleId = "notion.id" },
-	{ prefix = { "Option" }, key = "D", message = "DataGrip", bundleId = "com.jetbrains.datagrip" },
-	{ prefix = { "Option" }, key = "K", message = "Freeplane", bundleId = "org.freeplane.launcher" },
+	{ prefix = { "Option" }, key = "D", message = "Discord", bundleId = "com.hnc.Discord" },
+	{ prefix = { "Option" }, key = "K", message = "DataGrip", bundleId = "com.jetbrains.datagrip" },
 	{ prefix = { "Option" }, key = "O", message = "OpenCat", bundleId = "tech.baye.OpenCat" },
 	{ prefix = { "Option" }, key = "M", message = "Microsoft Teams", bundleId = "com.microsoft.teams2" },
 	{ prefix = { "Option" }, key = "P", message = "Postman", bundleId = "com.postmanlabs.mac" },
 	{ prefix = { "Option" }, key = "E", message = "Excel", bundleId = "com.microsoft.Excel" },
-	{ prefix = { "Option" }, key = "V", message = "Cursor", bundleId = "com.todesktop.230313mzl4w4u92" },
+	{ prefix = { "Option" }, key = "V", message = "VSCode", bundleId = "com.microsoft.VSCode" },
 	{ prefix = { "Option" }, key = "T", message = "Telegram", bundleId = "ru.keepcoder.Telegram" },
 	{ prefix = { "Option" }, key = "W", message = "WeChat", bundleId = "com.tencent.xinWeChat" },
 	{ prefix = { "Option" }, key = "S", message = "Safari", bundleId = "com.apple.Safari" },
@@ -83,49 +69,49 @@ _M.apps = {
 	{ prefix = { "Option" }, key = "L", message = "Lens", bundleId = "com.electron.kontena-lens" },
 }
 
--- 窗口管理: 改变窗口位置
+-- Window management: change window position
 _M.window_position = {
 	-- **************************************
-	-- 居中
+	-- Center
 	center = { prefix = { "Ctrl", "Option" }, key = "C", message = "Center Window" },
 	-- **************************************
-	-- 左半屏
+	-- Left half of screen
 	left = { prefix = { "Ctrl", "Option" }, key = "H", message = "Left Half of Screen" },
-	-- 右半屏
+	-- Right half of screen
 	right = { prefix = { "Ctrl", "Option" }, key = "L", message = "Right Half of Screen" },
-	-- 上半屏
+	-- Upper half of screen
 	up = { prefix = { "Ctrl", "Option" }, key = "K", message = "Up Half of Screen" },
-	-- 下半屏
+	-- Lower half of screen
 	down = { prefix = { "Ctrl", "Option" }, key = "J", message = "Down Half of Screen" },
 	-- **************************************
-	-- 左上角
+	-- Top left corner
 	top_left = { prefix = { "Ctrl", "Option" }, key = "Y", message = "Top Left Corner" },
-	-- 右上角
+	-- Top right corner
 	top_right = { prefix = { "Ctrl", "Option" }, key = "O", message = "Top Right Corner" },
-	-- 左下角
+	-- Bottom left corner
 	bottom_left = { prefix = { "Ctrl", "Option" }, key = "U", message = "Bottom Left Corner" },
-	-- 右下角
+	-- Bottom right corner
 	bottom_right = { prefix = { "Ctrl", "Option" }, key = "I", message = "Bottom Right Corner" },
 	-- **********************************
-	-- 左 1/3（横屏）或上 1/3（竖屏）
+	-- Left 1/3 (landscape) or top 1/3 (portrait)
 	left_1_3 = {
 		prefix = { "Ctrl", "Option" },
 		key = "Q",
 		message = "Left or Top 1/3",
 	},
-	-- 右 1/3（横屏）或下 1/3（竖屏）
+	-- Right 1/3 (landscape) or bottom 1/3 (portrait)
 	right_1_3 = {
 		prefix = { "Ctrl", "Option" },
 		key = "W",
 		message = "Right or Bottom 1/3",
 	},
-	-- 左 2/3（横屏）或上 2/3（竖屏）
+	-- Left 2/3 (landscape) or top 2/3 (portrait)
 	left_2_3 = {
 		prefix = { "Ctrl", "Option" },
 		key = "E",
 		message = "Left or Top 2/3",
 	},
-	-- 右 2/3（横屏）或下 2/3（竖屏）
+	-- Right 2/3 (landscape) or bottom 2/3 (portrait)
 	right_2_3 = {
 		prefix = { "Ctrl", "Option" },
 		key = "R",
@@ -133,27 +119,27 @@ _M.window_position = {
 	},
 }
 
--- 窗口操作: 移动窗口.
+-- Window operation: move window.
 _M.window_movement = {
-	-- 向上移动窗口
+	-- Move window upward
 	to_up = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "K",
 		message = "Move Upward",
 	},
-	-- 向下移动窗口
+	-- Move window downward
 	to_down = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "J",
 		message = "Move Downward",
 	},
-	-- 向左移动窗口
+	-- Move window to the left
 	to_left = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "H",
 		message = "Move Leftward",
 	},
-	-- 向右移动窗口
+	-- Move window to the right
 	to_right = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "L",
@@ -161,33 +147,33 @@ _M.window_movement = {
 	},
 }
 
--- 窗口操作: 改变窗口大小
+-- Window operation: change window size
 _M.window_resize = {
-	-- 最大化
+	-- Maximize
 	max = { prefix = { "Ctrl", "Option" }, key = "M", message = "Max Window" },
-	-- 等比例放大窗口
+	-- Proportionally enlarge window
 	stretch = { prefix = { "Ctrl", "Option" }, key = "=", message = "Stretch Outward" },
-	-- 等比例缩小窗口
+	-- Proportionally shrink window
 	shrink = { prefix = { "Ctrl", "Option" }, key = "-", message = "Shrink Inward" },
-	-- 底边向上伸展窗口
+	-- Stretch bottom edge of window upward
 	stretch_up = {
 		prefix = { "Ctrl", "Option", "Command", "Shift" },
 		key = "K",
 		message = "Bottom Side Stretch Upward",
 	},
-	-- 底边向下伸展窗口
+	-- Stretch bottom edge of window downward
 	stretch_down = {
 		prefix = { "Ctrl", "Option", "Command", "Shift" },
 		key = "J",
 		message = "Bottom Side Stretch Downward",
 	},
-	-- 右边向左伸展窗口
+	-- Stretch right edge of window to the left
 	stretch_left = {
 		prefix = { "Ctrl", "Option", "Command", "Shift" },
 		key = "H",
 		message = "Right Side Stretch Leftward",
 	},
-	-- 右边向右伸展窗口
+	-- Stretch right edge of window to the right
 	stretch_right = {
 		prefix = { "Ctrl", "Option", "Command", "Shift" },
 		key = "L",
@@ -195,21 +181,21 @@ _M.window_resize = {
 	},
 }
 
--- 窗口管理: 批量处理
+-- Window management: batch processing
 _M.window_batch = {
-	-- 最小化所有窗口.
+	-- Minimize all windows.
 	minimize_all_windows = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "M",
 		message = "Minimize All Windows",
 	},
-	-- 恢复所有最小化的窗口.
+	-- Restore all minimized windows.
 	un_minimize_all_windows = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "U",
 		message = "Unminimize All Windows",
 	},
-	-- 关闭所有窗口.
+	-- Close all windows.
 	close_all_windows = {
 		prefix = { "Ctrl", "Option", "Command" },
 		key = "Q",
@@ -217,7 +203,7 @@ _M.window_batch = {
 	},
 }
 
--- 窗口操作: 移动到上下左右或下一个显示器
+-- Window operation: move to above, below, left, right, or next monitor
 _M.window_monitor = {
 	to_above_screen = {
 		prefix = { "Ctrl", "Option" },
@@ -241,7 +227,7 @@ _M.window_monitor = {
 	},
 	to_next_screen = {
 		prefix = { "Ctrl", "Option" },
-		key = "space", -- 扩展显示器比较少的情况只用这个就可以.
+		key = "space", -- If you have few external monitors, just use this.
 		message = "Move to Next Monitor",
 	},
 }

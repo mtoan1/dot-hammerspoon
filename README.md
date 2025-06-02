@@ -13,8 +13,6 @@
 - Application quick launch or hide.
 - Application window manipulation, such as moving, resizing, changing position, etc.
 - System management, such as lock screen, restart system, etc.
-- Auto switch input method according to the application.
-- Switch to the specified input method.
 - Open the specified website directly.
 - Toggle the keybindings cheatsheet.
 - Keep the desktop wallpaper the same as the bing daily picture.
@@ -27,7 +25,7 @@
 
 2. Run `Hammerspoon.app` and follow the prompts to enable Accessibility access for the app.
 
-3. `git clone --depth 1 https://github.com/mtoan1/dot-hammerspoon.git ~/.hammerspoon`
+3. `git clone --depth 1 https://github.com/windvalley/dot-hammerspoon.git ~/.hammerspoon`
 
 Keep update:
 
@@ -43,10 +41,6 @@ cd ~/.hammerspoon && git pull
 
 <kbd>⌥</kbd> + <kbd>/</kbd>
 
-### Switch to the specified Input Method
-
-- <kbd>⌥</kbd> + <kbd>1</kbd>: ABC
-- <kbd>⌥</kbd> + <kbd>2</kbd>: Pinyin
 
 ### System Management
 

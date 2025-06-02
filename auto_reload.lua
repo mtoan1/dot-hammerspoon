@@ -1,7 +1,7 @@
 local _M = {}
 
 _M.name = "auto_reload"
-_M.description = "lua文件变动自动reload, 使实时生效"
+_M.description = "Automatically reload when lua files change, for immediate effect"
 
 local function reload(files)
     local doReload = false

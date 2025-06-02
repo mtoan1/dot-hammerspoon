@@ -1,26 +1,26 @@
 local _M = {}
 
 _M.name = "bing_daily_wallpaper"
-_M.description = "使用Bing Daily Picture作为屏幕壁纸"
+_M.description = "Use Bing Daily Picture as desktop wallpaper"
 
 local log = hs.logger.new("wallpaper")
 
--- 每隔多少秒触发一次bing请求进行壁纸更新:
---   2分钟: 2 * 60
---   2小时: 2 * 60 * 60
+-- How many seconds between each Bing request to update the wallpaper:
+--   2 minutes: 2 * 60
+--   2 hours: 2 * 60 * 60
 local do_every_seconds = 1 * 60 * 60
 
--- 最好根据自己的电脑屏幕分辨率设置.
+-- It is best to set this according to your screen resolution.
 local pic_width, pic_height = 3072, 1920
 
--- 获取Bing最近多少天的壁纸列表(每天有一张壁纸图片):
---   设置成1, 代表壁纸保持和Bing当天的壁纸一样;
---   设置成大于1, 则每次触发更新壁纸, 会随机从中选择一张壁纸图片.
+-- How many days of Bing wallpapers to fetch (one wallpaper per day):
+--   Set to 1 to always use the current Bing wallpaper;
+--   Set to greater than 1 to randomly choose from recent wallpapers each update.
 local pic_count = 1
 
 local pic_save_path = os.getenv("HOME") .. "/.Trash/"
 
--- 获取图片url json列表的接口.
+-- API endpoint to get the JSON list of image URLs.
 local bing_pictures_url =
     "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=" ..
     pic_count .. "&nc=1612409408851&pid=hp&FORM=BEHPTB&uhd=1&uhdwidth=" .. pic_width .. "&uhdheight=" .. pic_height
@@ -35,7 +35,7 @@ local function curl_callback(exitCode, stdOut, stdErr)
 
         local localpath = pic_save_path .. hs.http.urlParts(_M.full_url).query
 
-        -- 为每个显示器都设置壁纸(注意不是macOS新建的其他桌面, 而是扩展显示器)
+        -- Set wallpaper for each display (note: not for extra macOS virtual desktops, only for physical displays)
         local screens = hs.screen.allScreens()
         for _, screen in ipairs(screens) do
             log.i(string.format("set wallpaper for %s", screen))
@@ -64,7 +64,7 @@ local function bing_request()
                     local pic_url = image_urls[math.random(1, #image_urls)].url
                     local pic_name = hs.http.urlParts(pic_url).query
 
-                    -- 只有在本次和上次获取的图片不同时才去设置屏幕壁纸.
+                    -- Only set the wallpaper if the new picture is different from the previous one.
                     if _M.last_pic ~= pic_name then
                         _M.full_url = "https://www.bing.com" .. pic_url
 
@@ -75,7 +75,7 @@ local function bing_request()
 
                         local localpath = pic_save_path .. hs.http.urlParts(_M.full_url).query
 
-                        -- 这里真正触发下载壁纸图片.
+                        -- Actually trigger the wallpaper image download here.
                         _M.task =
                             hs.task.new(
                             "/usr/bin/curl",
@@ -97,10 +97,10 @@ local function bing_request()
     )
 end
 
--- 每次reload配置都触发更新.
+-- Update wallpaper every time the config is reloaded.
 bing_request()
 
--- 定期自动更新.
+-- Automatically update at regular intervals.
 if _M.timer == nil then
     _M.timer =
         hs.timer.doEvery(

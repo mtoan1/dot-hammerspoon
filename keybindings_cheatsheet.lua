@@ -1,9 +1,10 @@
 local _M = {}
 
 _M.name = "keybindings_cheatsheet"
-_M.description = "展示快捷键备忘列表"
+_M.description = "Display keybindings cheatsheet"
 
 local keybindings_cheatsheet = require "keybindings_config".keybindings_cheatsheet
+local input_methods = require "keybindings_config".manual_input_methods
 local system = require "keybindings_config".system
 local websites = require "keybindings_config".websites
 local apps = require "keybindings_config".apps
@@ -19,25 +20,25 @@ local utf8sub = require "utils_lib".utf8sub
 local split = require "utils_lib".split
 local trim = require "utils_lib".trim
 
--- 背景不透明度
+-- Background opacity
 local background_opacity = 0.8
--- 每行最大的长度
+-- Maximum length per line
 local max_line_length = 35
--- 每列的行数
+-- Number of lines per column
 local max_line_number = 20
--- 行距
+-- Line spacing
 local line_spacing = 5
--- 文本距离分割线的距离
+-- Distance between text and separator line
 local seperator_spacing = 6
--- 字体名称
+-- Font name
 local font_name = "Monaco"
--- 字体大小
+-- Font size
 local font_size = 15
--- 字体颜色
+-- Font color
 local font_color = "#c6c6c6"
--- 分割线颜色
+-- Separator line color
 local stroke_color = "#585858"
--- 分割线的宽度
+-- Separator line width
 local stroke_width = 1
 
 local focusedWindow = hs.window.focusedWindow()
@@ -50,12 +51,12 @@ local screen = focusedWindow:screen():frame()
 local cooridnate_x = screen.w / 2
 local cooridnate_y = screen.h / 2
 
--- 快捷键总数
+-- Total number of keybindings
 local num = 0
 
 local canvas = hs.canvas.new({x = 0, y = 0, w = 0, h = 0})
 
--- 背景面板
+-- Background panel
 canvas:appendElements(
     {
         id = "pannel",
@@ -82,7 +83,7 @@ local function styleText(text)
 end
 
 local function formatText()
-    -- 加载所有绑定的快捷键
+    -- Load all bound hotkeys
     local hotkeys = hs.hotkey.getHotkeys()
 
     local renderText = {}
@@ -118,9 +119,17 @@ local function formatText()
     local windowBatch = {}
     table.insert(windowBatch, {msg = "[Window Batch]"})
 
-    -- 快捷键分类
+    -- Categorize keybindings
     for _, v in ipairs(hotkeys) do
         local _msg = trim(split(v.msg, ":")[2])
+
+        -- Input methods
+        for _, i in pairs(input_methods) do
+            if _msg == i.message then
+                table.insert(inputMethods, {msg = v.msg})
+                goto continue
+            end
+        end
 
         -- System management
         for _, s in pairs(system) do
@@ -249,14 +258,14 @@ local function formatText()
         table.insert(hotkeys, {msg = v.msg})
     end
 
-    -- 文本定长
+    -- Ensure fixed text length
     for _, v in ipairs(hotkeys) do
         num = num + 1
 
         local msg = v.msg
         local len = utf8len(msg)
 
-        -- 超过最大长度, 截断多余部分, 截断的部分作为新的一行.
+        -- If the maximum length is exceeded, truncate the excess and start a new line.
         while len > max_line_length do
             local substr = utf8sub(msg, 1, max_line_length)
             table.insert(renderText, {line = substr})
@@ -279,7 +288,7 @@ local function drawText(renderText)
     local w = 0
     local h = 0
 
-    -- 每一列需要显示的文本
+    -- Text to display in each column
     local column = ""
 
     for k, v in ipairs(renderText) do
@@ -351,15 +360,15 @@ local function drawText(renderText)
         )
     end
 
-    -- 居中显示
+    -- Center display
     canvas:frame({x = cooridnate_x - w / 2, y = cooridnate_y - h / 2, w = w, h = h})
 end
 
--- 默认不显示
+-- Not displayed by default
 local show = false
 local function toggleKeybindingsCheatsheet()
     if show then
-        -- 0.3s 过渡
+        -- 0.3s transition
         canvas:hide(.3)
     else
         canvas:show(.3)
@@ -368,10 +377,10 @@ local function toggleKeybindingsCheatsheet()
     show = not show
 end
 
--- 执行绘制
+-- Perform drawing
 drawText(formatText())
 
--- 显示/隐藏快捷键备忘列表
+-- Show/hide keybindings cheatsheet
 hs.hotkey.bind(
     keybindings_cheatsheet.prefix,
     keybindings_cheatsheet.key,

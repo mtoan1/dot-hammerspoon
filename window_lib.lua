@@ -1,13 +1,13 @@
 local _M = {}
 
 _M.name = "window_lib"
-_M.description = "窗口管理相关函数库"
+_M.description = "Window management function library"
 
 -- An integer specifying how many gridparts the screen should be divided into.
 -- Defaults to 30.
 local gridparts = 30
 
--- 判断指定屏幕是否为竖屏
+-- Determine whether the specified screen is vertical
 local isVerticalScreen = function(screen)
     if screen:rotate() == 90 or screen:rotate() == 270 then
         return true
@@ -43,22 +43,22 @@ end
 
 -- Move and resize the focused window.
 -- Parameters:
---   halfleft: 左半屏
---   halfright: 右半屏
---   halfup: 上半屏
---   halfdown: 下半屏
---   left_1_3: 左或上1/3
---   right_1_3: 右或下1/3
---   left_2_3: 左或上2/3
---   right_2_3: 右或下2/3
---   cornerTopLeft: 左上角
---   cornerTopRight: 右上角
---   cornerBottomLeft: 左下角
---   cornerBottomRight: 右下角
---   max: 最大化
---   center: 保持窗口原右大小居中
---   stretch: 放大
---   shrink: 缩小
+--   halfleft: left half of screen
+--   halfright: right half of screen
+--   halfup: upper half of screen
+--   halfdown: lower half of screen
+--   left_1_3: left or top 1/3
+--   right_1_3: right or bottom 1/3
+--   left_2_3: left or top 2/3
+--   right_2_3: right or bottom 2/3
+--   cornerTopLeft: top left corner
+--   cornerTopRight: top right corner
+--   cornerBottomLeft: bottom left corner
+--   cornerBottomRight: bottom right corner
+--   max: maximize
+--   center: center window with original size
+--   stretch: enlarge
+--   shrink: shrink
 _M.moveAndResize = function(option)
     local cwin = hs.window.focusedWindow()
 
@@ -88,8 +88,8 @@ _M.moveAndResize = function(option)
         elseif option == "max" then
             cwin:setFrame({x = cres.x, y = cres.y, w = cres.w, h = cres.h})
         elseif option == "center" then
-            -- cwin:centerOnScreen() 居中但不改变大小,
-            -- 改成如下居中且调整成适当的大小.
+            -- cwin:centerOnScreen() centers without changing size,
+            -- changed to the following for centering and resizing to proper size.
             cwin:setFrame(
                 {
                     x = cres.x + cres.w / 6,
@@ -233,7 +233,7 @@ _M.moveToScreen = function(direction)
     end
 end
 
--- 最小化所有窗口.
+-- Minimize all windows.
 _M.minimizeAllWindows = function()
     local windows = hs.window.allWindows()
 
@@ -242,7 +242,7 @@ _M.minimizeAllWindows = function()
     end
 end
 
--- 恢复所有最小化的窗口.
+-- Restore all minimized windows.
 _M.unMinimizeAllWindows = function()
     local windows = hs.window.minimizedWindows()
 
@@ -252,7 +252,7 @@ _M.unMinimizeAllWindows = function()
     end
 end
 
--- 关闭所有窗口.
+-- Close all windows.
 _M.closeAllWindows = function()
     local windows = hs.window.allWindows()
 

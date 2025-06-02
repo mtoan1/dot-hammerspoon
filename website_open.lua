@@ -1,7 +1,7 @@
 local _M = {}
 
 _M.name = "website_open"
-_M.description = "快速打开目标网站"
+_M.description = "Quickly open target website"
 
 local websites = require "keybindings_config".websites
 
