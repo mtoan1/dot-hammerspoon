@@ -4,7 +4,6 @@ _M.name = "keybindings_cheatsheet"
 _M.description = "Display keybindings cheatsheet"
 
 local keybindings_cheatsheet = require "keybindings_config".keybindings_cheatsheet
-local input_methods = require "keybindings_config".manual_input_methods
 local system = require "keybindings_config".system
 local websites = require "keybindings_config".websites
 local apps = require "keybindings_config".apps
@@ -92,9 +91,6 @@ local function formatText()
     table.insert(keybindingsCheatsheet, {msg = "[Cheatsheet]"})
     table.insert(keybindingsCheatsheet, {msg = keybindings_cheatsheet.description})
 
-    local inputMethods = {}
-    table.insert(inputMethods, {msg = "[Input Methods]"})
-
     local systemManagement = {}
     table.insert(systemManagement, {msg = "[System Management]"})
 
@@ -122,14 +118,6 @@ local function formatText()
     -- Categorize keybindings
     for _, v in ipairs(hotkeys) do
         local _msg = trim(split(v.msg, ":")[2])
-
-        -- Input methods
-        for _, i in pairs(input_methods) do
-            if _msg == i.message then
-                table.insert(inputMethods, {msg = v.msg})
-                goto continue
-            end
-        end
 
         -- System management
         for _, s in pairs(system) do
@@ -205,10 +193,6 @@ local function formatText()
     end
 
     table.insert(hotkeys, {msg = ""})
-
-    for _, v in ipairs(inputMethods) do
-        table.insert(hotkeys, {msg = v.msg})
-    end
 
     table.insert(hotkeys, {msg = ""})
 
