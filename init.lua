@@ -48,4 +48,7 @@ require("keybindings_cheatsheet")
 -- Automatically reload when lua files change
 require("auto_reload")
 
+-- Screen manager
+require("screen_manager").start()
+
 return _M
