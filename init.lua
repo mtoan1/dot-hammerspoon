@@ -29,9 +29,6 @@ hs.logger.defaultLogLevel = "warning"
 -- Quickly launch or switch between apps
 require("app_launch")
 
--- App window operations
--- require("window_manipulation")
-
 -- System management
 require("system_manage")
 
@@ -48,10 +45,10 @@ require("keybindings_cheatsheet")
 -- require("screen_manager").start()
 
 -- Double modifier remap
-require("double_modifier_remap")
+require("popclip_double_modifier_remap")
 
 -- Window manipulation
-require("manipulation")
+require("window_manipulation")
 
 -- Automatically reload when lua files change
 require("auto_reload")

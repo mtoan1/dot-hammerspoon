@@ -1,276 +1,99 @@
 local _M = {}
+_M.name        = "window_manipulation"
+_M.description = "Quick 3 layouts: split two windows or stack three windows"
 
-_M.name = "window_manipulation"
-_M.description = "App window management, e.g. move, enlarge, shrink, split screen, etc."
+local grid      = require("hs.grid")
+local hotkey    = require("hs.hotkey")
+local window    = require("hs.window")
+local alert     = require("hs.alert")
 
-local window_position = require("keybindings_config").window_position
-local window_resize = require("keybindings_config").window_resize
-local window_batch = require("keybindings_config").window_batch
-local window_monitor = require("keybindings_config").window_monitor
+-- Set up a 6×6 grid for window positioning
+grid.setGrid("6x6")
+grid.MARGINX    = 0
+grid.MARGINY    = 0
 
-local window_lib = require("window_lib")
+-- Define modifier keys for shortcuts
+local mods = {"ctrl", "option"}
 
-local log = hs.logger.new("window")
+-- Layout definitions with grid coordinates and alert messages
+local layouts = {
+    -- Equal Halves
+    {mods = mods, key = "H", grid = {x=0, y=0, w=3, h=6}, message = "Left Half"},
+    {mods = mods, key = "L", grid = {x=3, y=0, w=3, h=6}, message = "Right Half"},
+    -- Left 2/3 and Right 1/3 Full Height
+    {mods = mods, key = "J", grid = {x=0, y=0, w=4, h=6}, message = "Left 2/3"},
+    {mods = mods, key = "K", grid = {x=4, y=0, w=2, h=6}, message = "Right 1/3 Full Height"},
+    -- Left 2/3 and Two Stacked Right 1/3
+    {mods = mods, key = "I", grid = {x=4, y=0, w=2, h=3}, message = "Top Right 1/3 Width, 1/2 Height"},
+    {mods = mods, key = "M", grid = {x=4, y=3, w=2, h=3}, message = "Bottom Right 1/3 Width, 1/2 Height"},
+    -- Full Screen
+    {mods = mods, key = "return", grid = {x=0, y=0, w=6, h=6}, message = "Full Screen"},
+    -- Upper and Lower Half
+    {mods = mods, key = "U", grid = {x=0, y=0, w=6, h=3}, message = "Upper Half"},
+    {mods = mods, key = "N", grid = {x=0, y=3, w=6, h=3}, message = "Lower Half"},
+}
 
--- ********** window position **********
--- Center
-hs.hotkey.bind(
-    window_position.center.prefix,
-    window_position.center.key,
-    window_position.center.message,
-    function()
-        window_lib.moveAndResize("center")
+-- Function to apply grid position to the focused window
+local function setWindowGrid(gridParams, message)
+    local win = window.focusedWindow()
+    if win then
+        grid.set(win, gridParams, win:screen())
+    else
+        alert.show("No focused window")
     end
-)
--- Left half of screen
-hs.hotkey.bind(
-    window_position.left.prefix,
-    window_position.left.key,
-    window_position.left.message,
-    function()
-        window_lib.moveAndResize("halfleft")
-    end
-)
--- Right half of screen
-hs.hotkey.bind(
-    window_position.right.prefix,
-    window_position.right.key,
-    window_position.right.message,
-    function()
-        window_lib.moveAndResize("halfright")
-    end
-)
--- Upper half of screen
-hs.hotkey.bind(
-    window_position.up.prefix,
-    window_position.up.key,
-    window_position.up.message,
-    function()
-        window_lib.moveAndResize("halfup")
-    end
-)
--- Lower half of screen
-hs.hotkey.bind(
-    window_position.down.prefix,
-    window_position.down.key,
-    window_position.down.message,
-    function()
-        window_lib.moveAndResize("halfdown")
-    end
-)
--- Top left corner
-hs.hotkey.bind(
-    window_position.top_left.prefix,
-    window_position.top_left.key,
-    window_position.top_left.message,
-    function()
-        window_lib.moveAndResize("cornerTopLeft")
-    end
-)
--- Top right corner
-hs.hotkey.bind(
-    window_position.top_right.prefix,
-    window_position.top_right.key,
-    window_position.top_right.message,
-    function()
-        window_lib.moveAndResize("cornerTopRight")
-    end
-)
--- Bottom left corner
-hs.hotkey.bind(
-    window_position.bottom_left.prefix,
-    window_position.bottom_left.key,
-    window_position.bottom_left.message,
-    function()
-        window_lib.moveAndResize("cornerBottomLeft")
-    end
-)
--- Bottom right corner
-hs.hotkey.bind(
-    window_position.bottom_right.prefix,
-    window_position.bottom_right.key,
-    window_position.bottom_right.message,
-    function()
-        window_lib.moveAndResize("cornerBottomRight")
-    end
-)
--- Left 1/3 (landscape) or top 1/3 (portrait)
-hs.hotkey.bind(
-    window_position.left_1_3.prefix,
-    window_position.left_1_3.key,
-    window_position.left_1_3.message,
-    function()
-        window_lib.moveAndResize("left_1_3")
-    end
-)
--- Right 1/3 (landscape) or bottom 1/3 (portrait)
-hs.hotkey.bind(
-    window_position.right_1_3.prefix,
-    window_position.right_1_3.key,
-    window_position.right_1_3.message,
-    function()
-        window_lib.moveAndResize("right_1_3")
-    end
-)
--- Left 2/3 (landscape) or top 2/3 (portrait)
-hs.hotkey.bind(
-    window_position.left_2_3.prefix,
-    window_position.left_2_3.key,
-    window_position.left_2_3.message,
-    function()
-        window_lib.moveAndResize("left_2_3")
-    end
-)
--- Right 2/3 (landscape) or bottom 2/3 (portrait)
-hs.hotkey.bind(
-    window_position.right_2_3.prefix,
-    window_position.right_2_3.key,
-    window_position.right_2_3.message,
-    function()
-        window_lib.moveAndResize("right_2_3")
-    end
-)
--- 1/3 horizontal, 1/2 vertical at corners
-hs.hotkey.bind(
-    window_position.top_left_1_3_h_1_2_v.prefix,
-    window_position.top_left_1_3_h_1_2_v.key,
-    window_position.top_left_1_3_h_1_2_v.message,
-    function()
-        window_lib.moveAndResize("top_left_1_3_h_1_2_v")
-    end
-)
-hs.hotkey.bind(
-    window_position.top_right_1_3_h_1_2_v.prefix,
-    window_position.top_right_1_3_h_1_2_v.key,
-    window_position.top_right_1_3_h_1_2_v.message,
-    function()
-        window_lib.moveAndResize("top_right_1_3_h_1_2_v")
-    end
-)
-hs.hotkey.bind(
-    window_position.bottom_left_1_3_h_1_2_v.prefix,
-    window_position.bottom_left_1_3_h_1_2_v.key,
-    window_position.bottom_left_1_3_h_1_2_v.message,
-    function()
-        window_lib.moveAndResize("bottom_left_1_3_h_1_2_v")
-    end
-)
-hs.hotkey.bind(
-    window_position.bottom_right_1_3_h_1_2_v.prefix,
-    window_position.bottom_right_1_3_h_1_2_v.key,
-    window_position.bottom_right_1_3_h_1_2_v.message,
-    function()
-        window_lib.moveAndResize("bottom_right_1_3_h_1_2_v")
-    end
-)
+end
 
--- ********** window resize **********
--- Maximize
-hs.hotkey.bind(
-    window_resize.max.prefix,
-    window_resize.max.key,
-    window_resize.max.message,
-    function()
-        window_lib.moveAndResize("max")
-    end
-)
--- Proportionally enlarge window
-hs.hotkey.bind(
-    window_resize.stretch.prefix,
-    window_resize.stretch.key,
-    window_resize.stretch.message,
-    function()
-        window_lib.moveAndResize("stretch")
-    end
-)
--- Proportionally shrink window
-hs.hotkey.bind(
-    window_resize.shrink.prefix,
-    window_resize.shrink.key,
-    window_resize.shrink.message,
-    function()
-        window_lib.moveAndResize("shrink")
-    end
-)
+-- Bind hotkeys for each layout
+for _, layout in ipairs(layouts) do
+    hotkey.bind(layout.mods, layout.key, function()
+        setWindowGrid(layout.grid, layout.message)
+    end)
+end
 
--- ********** window monitor **********
--- Move window to above, below, left, right, or next monitor.
-hs.hotkey.bind(
-    window_monitor.to_above_screen.prefix,
-    window_monitor.to_above_screen.key,
-    window_monitor.to_above_screen.message,
-    function()
-        log.d("move to above monitor")
-        window_lib.moveToScreen("up")
+-- Center the focused window
+hotkey.bind(mods, "C", function()
+    local win = window.focusedWindow()
+    if win then
+        win:centerOnScreen()
+    else
+        alert.show("No focused window")
     end
-)
-hs.hotkey.bind(
-    window_monitor.to_below_screen.prefix,
-    window_monitor.to_below_screen.key,
-    window_monitor.to_below_screen.message,
-    function()
-        log.d("move to below monitor")
-        window_lib.moveToScreen("down")
-    end
-)
-hs.hotkey.bind(
-    window_monitor.to_left_screen.prefix,
-    window_monitor.to_left_screen.key,
-    window_monitor.to_left_screen.message,
-    function()
-        log.d("move to left monitor")
-        window_lib.moveToScreen("left")
-    end
-)
-hs.hotkey.bind(
-    window_monitor.to_right_screen.prefix,
-    window_monitor.to_right_screen.key,
-    window_monitor.to_right_screen.message,
-    function()
-        log.d("move to right monitor")
-        window_lib.moveToScreen("right")
-    end
-)
-hs.hotkey.bind(
-    window_monitor.to_next_screen.prefix,
-    window_monitor.to_next_screen.key,
-    window_monitor.to_next_screen.message,
-    function()
-        log.d("move to next monitor")
-        window_lib.moveToScreen("next")
-    end
-)
+end)
 
--- ********** window batch **********
--- Minimize all windows
-hs.hotkey.bind(
-    window_batch.minimize_all_windows.prefix,
-    window_batch.minimize_all_windows.key,
-    window_batch.minimize_all_windows.message,
-    function()
-        log.d("minimized all windows")
-        window_lib.minimizeAllWindows()
+
+-- Minimize all windows with Control + Option + X
+hs.hotkey.bind(mods, "X", function()
+    local windows = hs.window.allWindows()
+    for _, win in pairs(windows) do
+        win:minimize()
     end
-)
--- Restore all minimized windows
-hs.hotkey.bind(
-    window_batch.un_minimize_all_windows.prefix,
-    window_batch.un_minimize_all_windows.key,
-    window_batch.un_minimize_all_windows.message,
-    function()
-        log.d("unminimize all windows")
-        window_lib.unMinimizeAllWindows()
+end)
+
+-- Unminimize all windows with Control + Option + Z
+hs.hotkey.bind(mods, "Z", function()
+    local minimizedWindows = hs.window.minimizedWindows()
+    for _, win in pairs(minimizedWindows) do
+        win:unminimize()
     end
-)
--- Close all windows
-hs.hotkey.bind(
-    window_batch.close_all_windows.prefix,
-    window_batch.close_all_windows.key,
-    window_batch.close_all_windows.message,
-    function()
-        log.d("close all windows")
-        window_lib.closeAllWindows()
-    end
-)
+end)
+
+-- Move window to adjacent monitors with arrow keys
+local monitorMoves = {
+    right = {func = "moveOneScreenEast", label = "Right"},
+    left = {func = "moveOneScreenWest", label = "Left"},
+    up = {func = "moveOneScreenNorth", label = "Upper"},
+    down = {func = "moveOneScreenSouth", label = "Lower"},
+}
+
+for key, info in pairs(monitorMoves) do
+    hotkey.bind(mods, key, function()
+        local win = window.focusedWindow()
+        if win then
+            win[info.func](win)
+        else
+            alert.show("No focused window")
+        end
+    end)
+end
 
 return _M

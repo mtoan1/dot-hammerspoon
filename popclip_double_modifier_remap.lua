@@ -1,6 +1,6 @@
 local _M = {}
 
-_M.name = "double_modifier_remap"
+_M.name = "popclip_double_modifier_remap"
 _M.description = "Remaps double presses of specific modifier keys to execute flexible shortcut sequences"
 _M.version = "1.0.2" -- Updated version to reflect fix
 
