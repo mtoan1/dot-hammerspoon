@@ -16,7 +16,7 @@ _M.keybindings_cheatsheet = {
 -- System management
 _M.system = {
 	lock_screen = {
-		prefix = { "Option" },
+		prefix = { "Ctrl", "Option" },
 		key = "Q",
 		message = "Lock Screen",
 	},
@@ -96,89 +96,59 @@ _M.window_position = {
 	-- Left 1/3 (landscape) or top 1/3 (portrait)
 	left_1_3 = {
 		prefix = { "Ctrl", "Option" },
-		key = "Q",
+		key = "N",
 		message = "Left or Top 1/3",
 	},
 	-- Right 1/3 (landscape) or bottom 1/3 (portrait)
 	right_1_3 = {
 		prefix = { "Ctrl", "Option" },
-		key = "W",
+		key = "M",
 		message = "Right or Bottom 1/3",
 	},
 	-- Left 2/3 (landscape) or top 2/3 (portrait)
 	left_2_3 = {
 		prefix = { "Ctrl", "Option" },
-		key = "E",
+		key = "B",
 		message = "Left or Top 2/3",
 	},
 	-- Right 2/3 (landscape) or bottom 2/3 (portrait)
 	right_2_3 = {
 		prefix = { "Ctrl", "Option" },
-		key = "R",
+		key = ",",
 		message = "Right or Bottom 2/3",
 	},
-}
-
--- Window operation: move window.
-_M.window_movement = {
-	-- Move window upward
-	to_up = {
-		prefix = { "Ctrl", "Option", "Command" },
-		key = "K",
-		message = "Move Upward",
+	-- **********************************
+	-- 1/3 horizontal, 1/2 vertical at corners
+	top_left_1_3_h_1_2_v = {
+		prefix = { "Ctrl", "Option" },
+		key = "[",
+		message = "Top Left 1/3 Horizontal, 1/2 Vertical",
 	},
-	-- Move window downward
-	to_down = {
-		prefix = { "Ctrl", "Option", "Command" },
-		key = "J",
-		message = "Move Downward",
+	top_right_1_3_h_1_2_v = {
+		prefix = { "Ctrl", "Option" },
+		key = "]",
+		message = "Top Right 1/3 Horizontal, 1/2 Vertical",
 	},
-	-- Move window to the left
-	to_left = {
-		prefix = { "Ctrl", "Option", "Command" },
-		key = "H",
-		message = "Move Leftward",
+	bottom_left_1_3_h_1_2_v = {
+		prefix = { "Ctrl", "Option" },
+		key = ";",
+		message = "Bottom Left 1/3 Horizontal, 1/2 Vertical",
 	},
-	-- Move window to the right
-	to_right = {
-		prefix = { "Ctrl", "Option", "Command" },
-		key = "L",
-		message = "Move Rightward",
+	bottom_right_1_3_h_1_2_v = {
+		prefix = { "Ctrl", "Option" },
+		key = "'",
+		message = "Bottom Right 1/3 Horizontal, 1/2 Vertical",
 	},
 }
 
 -- Window operation: change window size
 _M.window_resize = {
 	-- Maximize
-	max = { prefix = { "Ctrl", "Option" }, key = "M", message = "Max Window" },
+	max = { prefix = { "Ctrl", "Option" }, key = "Return", message = "Max Window" },
 	-- Proportionally enlarge window
 	stretch = { prefix = { "Ctrl", "Option" }, key = "=", message = "Stretch Outward" },
 	-- Proportionally shrink window
 	shrink = { prefix = { "Ctrl", "Option" }, key = "-", message = "Shrink Inward" },
-	-- Stretch bottom edge of window upward
-	stretch_up = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "K",
-		message = "Bottom Side Stretch Upward",
-	},
-	-- Stretch bottom edge of window downward
-	stretch_down = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "J",
-		message = "Bottom Side Stretch Downward",
-	},
-	-- Stretch right edge of window to the left
-	stretch_left = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "H",
-		message = "Right Side Stretch Leftward",
-	},
-	-- Stretch right edge of window to the right
-	stretch_right = {
-		prefix = { "Ctrl", "Option", "Command", "Shift" },
-		key = "L",
-		message = "Right Side Stretch Rightward",
-	},
 }
 
 -- Window management: batch processing

@@ -9,7 +9,6 @@ local websites = require "keybindings_config".websites
 local apps = require "keybindings_config".apps
 
 local window_position = require("keybindings_config").window_position
-local window_movement = require("keybindings_config").window_movement
 local window_resize = require("keybindings_config").window_resize
 local window_monitor = require("keybindings_config").window_monitor
 local window_batch = require("keybindings_config").window_batch
@@ -147,14 +146,6 @@ local function formatText()
         for _, wp in pairs(window_position) do
             if _msg == wp.message then
                 table.insert(windowPosition, {msg = v.msg})
-                goto continue
-            end
-        end
-
-        -- Window movement
-        for _, wm in pairs(window_movement) do
-            if _msg == wm.message then
-                table.insert(windowMovement, {msg = v.msg})
                 goto continue
             end
         end

@@ -4,7 +4,6 @@ _M.name = "window_manipulation"
 _M.description = "App window management, e.g. move, enlarge, shrink, split screen, etc."
 
 local window_position = require("keybindings_config").window_position
-local window_movement = require("keybindings_config").window_movement
 local window_resize = require("keybindings_config").window_resize
 local window_batch = require("keybindings_config").window_batch
 local window_monitor = require("keybindings_config").window_monitor
@@ -131,6 +130,39 @@ hs.hotkey.bind(
         window_lib.moveAndResize("right_2_3")
     end
 )
+-- 1/3 horizontal, 1/2 vertical at corners
+hs.hotkey.bind(
+    window_position.top_left_1_3_h_1_2_v.prefix,
+    window_position.top_left_1_3_h_1_2_v.key,
+    window_position.top_left_1_3_h_1_2_v.message,
+    function()
+        window_lib.moveAndResize("top_left_1_3_h_1_2_v")
+    end
+)
+hs.hotkey.bind(
+    window_position.top_right_1_3_h_1_2_v.prefix,
+    window_position.top_right_1_3_h_1_2_v.key,
+    window_position.top_right_1_3_h_1_2_v.message,
+    function()
+        window_lib.moveAndResize("top_right_1_3_h_1_2_v")
+    end
+)
+hs.hotkey.bind(
+    window_position.bottom_left_1_3_h_1_2_v.prefix,
+    window_position.bottom_left_1_3_h_1_2_v.key,
+    window_position.bottom_left_1_3_h_1_2_v.message,
+    function()
+        window_lib.moveAndResize("bottom_left_1_3_h_1_2_v")
+    end
+)
+hs.hotkey.bind(
+    window_position.bottom_right_1_3_h_1_2_v.prefix,
+    window_position.bottom_right_1_3_h_1_2_v.key,
+    window_position.bottom_right_1_3_h_1_2_v.message,
+    function()
+        window_lib.moveAndResize("bottom_right_1_3_h_1_2_v")
+    end
+)
 
 -- ********** window resize **********
 -- Maximize
@@ -158,107 +190,6 @@ hs.hotkey.bind(
     window_resize.shrink.message,
     function()
         window_lib.moveAndResize("shrink")
-    end
-)
--- Stretch based on bottom edge, upward or downward.
-hs.hotkey.bind(
-    window_resize.stretch_up.prefix,
-    window_resize.stretch_up.key,
-    window_resize.stretch_up.message,
-    function()
-        window_lib.directionStepResize("up")
-    end,
-    nil,
-    function()
-        window_lib.directionStepResize("up")
-    end
-)
-hs.hotkey.bind(
-    window_resize.stretch_down.prefix,
-    window_resize.stretch_down.key,
-    window_resize.stretch_down.message,
-    function()
-        window_lib.directionStepResize("down")
-    end,
-    nil,
-    function()
-        window_lib.directionStepResize("down")
-    end
-)
--- Stretch based on right edge, leftward or rightward.
-hs.hotkey.bind(
-    window_resize.stretch_left.prefix,
-    window_resize.stretch_left.key,
-    window_resize.stretch_left.message,
-    function()
-        window_lib.directionStepResize("left")
-    end,
-    nil,
-    function()
-        window_lib.directionStepResize("left")
-    end
-)
-hs.hotkey.bind(
-    window_resize.stretch_right.prefix,
-    window_resize.stretch_right.key,
-    window_resize.stretch_right.message,
-    function()
-        window_lib.directionStepResize("right")
-    end,
-    nil,
-    function()
-        window_lib.directionStepResize("right")
-    end
-)
-
--- ********** window movement **********
--- Move window up, down, left, or right.
-hs.hotkey.bind(
-    window_movement.to_up.prefix,
-    window_movement.to_up.key,
-    window_movement.to_up.message,
-    function()
-        window_lib.stepMove("up")
-    end,
-    nil,
-    function()
-        window_lib.stepMove("up")
-    end
-)
-hs.hotkey.bind(
-    window_movement.to_down.prefix,
-    window_movement.to_down.key,
-    window_movement.to_down.message,
-    function()
-        window_lib.stepMove("down")
-    end,
-    nil,
-    function()
-        window_lib.stepMove("down")
-    end
-)
-hs.hotkey.bind(
-    window_movement.to_left.prefix,
-    window_movement.to_left.key,
-    window_movement.to_left.message,
-    function()
-        window_lib.stepMove("left")
-    end,
-    nil,
-    function()
-        window_lib.stepMove("left")
-    end
-)
-hs.hotkey.bind(
-    window_movement.to_right.prefix,
-    window_movement.to_right.key,
-    window_movement.to_right.message,
-    function()
-        window_lib.stepMove("right")
-    end,
-    nil,
-    function()
-        window_lib.stepMove("right")
     end
 )
 

@@ -30,7 +30,7 @@ hs.logger.defaultLogLevel = "warning"
 require("app_launch")
 
 -- App window operations
-require("window_manipulation")
+-- require("window_manipulation")
 
 -- System management
 require("system_manage")
@@ -49,6 +49,9 @@ require("keybindings_cheatsheet")
 
 -- Double modifier remap
 require("double_modifier_remap")
+
+-- Window manipulation
+require("manipulation")
 
 -- Automatically reload when lua files change
 require("auto_reload")

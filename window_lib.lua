@@ -178,6 +178,82 @@ _M.moveAndResize = function(option)
             end
 
             cwin:setFrame(obj)
+        elseif option == "top_left_1_3_h_1_2_v" then
+            local obj
+            if isVerticalScreen(cscreen) then
+                obj = {
+                    x = cres.x,
+                    y = cres.y,
+                    w = cres.w / 2,
+                    h = cres.h / 3
+                }
+            else
+                obj = {
+                    x = cres.x,
+                    y = cres.y,
+                    w = cres.w / 3,
+                    h = cres.h / 2
+                }
+            end
+
+            cwin:setFrame(obj)
+        elseif option == "top_right_1_3_h_1_2_v" then
+            local obj
+            if isVerticalScreen(cscreen) then
+                obj = {
+                    x = cres.x + cres.w / 2,
+                    y = cres.y,
+                    w = cres.w / 2,
+                    h = cres.h / 3
+                }
+            else
+                obj = {
+                    x = cres.x + (cres.w / 3 * 2),
+                    y = cres.y,
+                    w = cres.w / 3,
+                    h = cres.h / 2
+                }
+            end
+
+            cwin:setFrame(obj)
+        elseif option == "bottom_left_1_3_h_1_2_v" then
+            local obj
+            if isVerticalScreen(cscreen) then
+                obj = {
+                    x = cres.x,
+                    y = cres.y + (cres.h / 3 * 2),
+                    w = cres.w / 2,
+                    h = cres.h / 3
+                }
+            else
+                obj = {
+                    x = cres.x,
+                    y = cres.y + cres.h / 2,
+                    w = cres.w / 3,
+                    h = cres.h / 2
+                }
+            end
+            
+            cwin:setFrame(obj)
+        elseif option == "bottom_right_1_3_h_1_2_v" then
+            local obj
+            if isVerticalScreen(cscreen) then
+                obj = {
+                    x = cres.x + cres.w / 2,
+                    y = cres.y + (cres.h / 3 * 2),
+                    w = cres.w / 2,
+                    h = cres.h / 3
+                }
+            else
+                obj = {
+                    x = cres.x + (cres.w / 3 * 2),
+                    y = cres.y + cres.h / 2,
+                    w = cres.w / 3,
+                    h = cres.h / 2
+                }
+            end
+
+            cwin:setFrame(obj)
         end
     else
         hs.alert.show("No focused window!")
