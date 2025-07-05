@@ -60,6 +60,23 @@ hotkey.bind(mods, "C", function()
     end
 end)
 
+
+-- Minimize all windows with Control + Option + X
+hs.hotkey.bind(mods, "X", function()
+    local windows = hs.window.allWindows()
+    for _, win in pairs(windows) do
+        win:minimize()
+    end
+end)
+
+-- Unminimize all windows with Control + Option + Z
+hs.hotkey.bind(mods, "Z", function()
+    local minimizedWindows = hs.window.minimizedWindows()
+    for _, win in pairs(minimizedWindows) do
+        win:unminimize()
+    end
+end)
+
 -- Move window to adjacent monitors with arrow keys
 local monitorMoves = {
     right = {func = "moveOneScreenEast", label = "Right"},
