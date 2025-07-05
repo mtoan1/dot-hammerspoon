@@ -38,17 +38,19 @@ require("system_manage")
 -- Quick website access
 require("website_open")
 
-
 -- Keep the desktop wallpaper in sync with Bing Daily Picture
 require("bing_daily_wallpaper")
 
 -- Show the keybindings cheatsheet panel
 require("keybindings_cheatsheet")
 
+-- Keep active
+-- require("screen_manager").start()
+
+-- Double modifier remap
+require("double_modifier_remap")
+
 -- Automatically reload when lua files change
 require("auto_reload")
-
--- Screen manager
-require("screen_manager").start()
 
 return _M

@@ -9,7 +9,7 @@ local log = hs.logger.new("screenManager", "info")
 
 -- Configuration
 local mouseInterval = 50     -- Simulate mouse movement every 5 seconds
-local inactivityTimeout = 300 -- Enable screen saver after 5 minutes
+local inactivityTimeout = 600 -- Enable screen saver after 5 minutes
 local movementThreshold = 3  -- Pixels to distinguish large (real) mouse movements
 
 -- Mouse simulation state
@@ -51,7 +51,7 @@ local function resetInactivityTimer()
     if inactivityTimer then
         inactivityTimer:stop()
     end
-    inactivityTimer = hs.timer.doAfter(inactivityTimeout, lockScreen)
+    inactivityTimer = hs.timer.doAfter(inactivityTimeout, startScreenSaver)
     -- log.i("Inactivity timer reset")
 end
 
