@@ -1,13 +1,13 @@
 local _M = {}
 
 _M.name = "app_launch"
-_M.description = "app启动或切换"
+_M.description = "App launch or switch"
 
 local apps = require "keybindings_config".apps
 
 local log = hs.logger.new("appLaunch")
 
--- App显示或隐藏
+-- Show or hide app
 local function toggleAppByBundleId(bundleID)
     local frontApp = hs.application.frontmostApplication()
     if frontApp:bundleID() == bundleID and frontApp:focusedWindow() then

@@ -3,9 +3,9 @@ local _M = {}
 _M.__index = _M
 
 _M.name = "init"
-_M.author = "XG <levinwang6@gmail.com>"
+_M.author = "MT"
 _M.license = "MIT"
-_M.homepage = "https://github.com/windvalley/dot-hammerspoon"
+_M.homepage = "https://github.com/mtoan1/dot-hammerspoon"
 
 -- Hammerspoon Preferences
 hs.autoLaunch(true)
@@ -15,42 +15,42 @@ hs.dockIcon(false)
 hs.menuIcon(true)
 hs.uploadCrashData(false)
 
--- 每次按快捷键时显示快捷键alert消息持续的秒数, 0 为禁用.
+-- Duration in seconds to show the hotkey alert message each time a hotkey is pressed; 0 to disable.
 hs.hotkey.alertDuration = 0
 
--- 窗口动画持续时间, 0为关闭动画效果.
+-- Duration of window animation; set to 0 to disable animation effects.
 hs.window.animationDuration = 0
 
--- Hammerspoon Console 上打印的日志级别.
--- 可选: verbose, debug, info, warning, error, nothing
--- 默认: warning
+-- Log level for messages printed in the Hammerspoon Console.
+-- Options: verbose, debug, info, warning, error, nothing
+-- Default: warning
 hs.logger.defaultLogLevel = "warning"
 
--- app快速启动或切换
+-- Quickly launch or switch between apps
 require("app_launch")
 
--- app窗口操作
-require("window_manipulation")
-
--- 系统管理
+-- System management
 require("system_manage")
 
--- 网站快捷访问
+-- Quick website access
 require("website_open")
 
--- 切换到指定输入法
-require("manual_input_method")
-
--- 根据应用不同, 自动切换输入法
-require("auto_input_method")
-
--- 使桌面壁纸保持和 Bing Daily Picture 一致
+-- Keep the desktop wallpaper in sync with Bing Daily Picture
 require("bing_daily_wallpaper")
 
--- 显示快捷键备忘面板
+-- Show the keybindings cheatsheet panel
 require("keybindings_cheatsheet")
 
--- lua文件变动自动reload
+-- Keep active
+-- require("screen_manager").start()
+
+-- Double modifier remap
+require("popclip_double_modifier_remap")
+
+-- Window manipulation
+require("window_manipulation")
+
+-- Automatically reload when lua files change
 require("auto_reload")
 
 return _M

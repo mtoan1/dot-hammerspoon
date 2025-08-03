@@ -1,7 +1,7 @@
 -- $ luacheck .
 
 std = {
-    -- 忽略对以下自带的全部变量的检查
+    -- Ignore the check of all built-in variables
     globals = {
         "hs",
         "spoon",
@@ -29,8 +29,8 @@ std = {
     }
 }
 
--- 忽略检查的错误类型.
+-- Ignored error types.
 ignore = {
-    -- 忽略检查代码每行长度.
+    -- Ignore checking code line length.
     "631"
 }

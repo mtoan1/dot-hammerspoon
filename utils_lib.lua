@@ -1,7 +1,7 @@
 local _M = {}
 
 _M.name = "utils_lib"
-_M.description = "通用函数工具库"
+_M.description = "General utility function library"
 
 local charsize = function(ch)
     if not ch then
@@ -23,8 +23,8 @@ end
 
 _M.utf8len = function(str)
     local len = 0
-    local aNum = 0 -- 字母个数
-    local hNum = 0 -- 汉字个数
+    local aNum = 0 -- number of alphabetic characters
+    local hNum = 0 -- number of Chinese characters
     local currentIndex = 1
 
     while currentIndex <= #str do
@@ -62,7 +62,7 @@ _M.utf8sub = function(str, startChar, numChars)
     return str:sub(startIndex, currentIndex - 1)
 end
 
--- table to string 序列化
+-- table to string serialization
 _M.serialize = function(self, obj)
     local lua = ""
     local t = type(obj)
@@ -96,7 +96,7 @@ _M.serialize = function(self, obj)
     return lua
 end
 
--- string to table 反序列化
+-- string to table deserialization
 _M.unserialize = function(lua)
     local t = type(lua)
     if t == "nil" or lua == "" then
